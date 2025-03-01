@@ -1,14 +1,24 @@
+///TESTED and WORKS AS EXPECTED
 const express = require('express');
 const app = express();
 const PORT = 3000;
 
 //movie controller
-const fetchMovies = require('../services/movieService')
+const movieController = require('./controllers/movieController')
+
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// movie controller for top rated movies
+app.get('/api/movies/top-rated', movieController.getTopRatedMovies, (req, res) => {
+    res.status(200).send(res.locals.topMovies.results)
+ });
+ 
 // Basic route
 app.get('/', (req, res) => { res.send('Hello from the backend!'); });
+
+
+
 
 // Start the server
 app.listen(PORT,()=>{

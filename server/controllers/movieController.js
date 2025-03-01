@@ -1,3 +1,4 @@
+///TESTED and WORKS AS EXPECTED
 const fetchMovies = require('../services/movieService')
 
 const MovieController ={
@@ -6,7 +7,7 @@ async getTopRatedMovies (req, res, next){
     try{
         const topMovies = await fetchMovies("top_rated")
         res.locals.topMovies = topMovies;
-    next()
+    return next()
     }catch(error){
         return next({
             log:`error from MovieController.getTopRatedMovies: ${error}`,
@@ -16,4 +17,5 @@ async getTopRatedMovies (req, res, next){
     }
 }
 }
+
 module.exports = MovieController;

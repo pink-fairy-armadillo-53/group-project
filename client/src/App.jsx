@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import fetchMovie from  './services/fetchMovie'
 function App() {
   const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([])
+  
 
   return (
     <>
@@ -16,11 +18,14 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>{priority}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button className='button' onClick={() => addPriority()}>
+     Add
+    </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
