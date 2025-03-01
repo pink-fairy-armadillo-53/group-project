@@ -1,6 +1,9 @@
+///TESTED and WORKS AS EXPECTED
+
 const path = require('path');
 /// require dotenv and specify the .env path to access the environment variables.
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
+
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
 //pass environment variables for the api key and token 
 const authToken = process.env.AUTHORIZATION_TOKEN
@@ -18,9 +21,13 @@ const fetchMovies = async (endpoint)=>{
     try{
        const response = await fetch(BASE_URL+endpoint, options)
        const data = await response.json();
+        return data
+       ///console.logging this data with a string breaks it
+       console.log("data from the movie Services")
        console.log(data)
     }catch(error){
       console.log(error)
     }
 }
-module.exports = fetchMovies
+
+module.exports = fetchMovies;
