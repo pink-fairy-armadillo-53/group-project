@@ -1,4 +1,4 @@
-import React, { userState } from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -60,3 +60,4 @@ const Login = () => {
     </div>
   );
 };
+export default Login;

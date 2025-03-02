@@ -9,21 +9,25 @@ const Hero = ({ films }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFilmIndex((prevIndex) => (prevIndex + 1) % films.length);
-    }, 5000); 
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [films.length]);
+
+  if (films.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   const currentFilm = films[currentFilmIndex];
   const backgroundImage = currentFilm.image || 'placeholder.jpg';
 
   return (
-    <div 
-      className='hero' 
-      style={{ 
-        backgroundImage: `url(${backgroundImage})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
+    <div
+      className='hero'
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className='hero-content'>

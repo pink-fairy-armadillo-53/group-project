@@ -1,41 +1,36 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import fetchTopRatedMovies  from  './services/fetchMovie'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import FilmPage from './pages/FilmPage';
+import FavoritesPage from './pages/FavoritesPage';
+import MyReviewsPage from './pages/MyReviewsPage';
+import Login from './Login';
+import Navbar from './components/NavBar';
+import './App.css';
+
 function App() {
-  const [count, setCount] = useState(0)
-  const [movies, setMovies] = useState([])
-  
+  const userId = 'exampleUserId'; // Replace with actual user ID logic
 
   return (
-    <>
-    
-      {/* <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/film/:id' element={<FilmPage />} />
+          <Route
+            path='/favorites'
+            element={<FavoritesPage userId={userId} />}
+          />
+          <Route
+            path='/my-reviews'
+            element={<MyReviewsPage userId={userId} />}
+          />
+          <Route path='/' element={<HomePage />} />
+        </Routes>
       </div>
-      <h1>{priority}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <button className='button' onClick={() => addPriority()}>
-     Add
-    </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
