@@ -1,26 +1,34 @@
-// not sure about this -R
-// passing down props of films to each film card and display them
-
 import React, { useState, useEffect } from "react";
 import FilmCard from "../components/FilmCard";
-import fetchMovie from "../services/fetchMovie";
+import Modal from "../components/Modal";
+import fetchMovies from "../services/fetchMovie";
+
 const FilmContainer = () => {
-  //pulls fetches the movies and displays in browser
   const [movies, setMovies] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   useEffect(() => {
-    fetchMovie().then((data) => {
+    fetchMovies().then((data) => {
       setMovies(data);
     });
-    // console.log(movies)
-  }, [movies]);
+  }, []);
 
-  //click logic for the cards
-  useEffect(() => {}, []);
+  const cardClick = (movie) => {
+    console.log("Film clicked:", movie); 
+    setSelectedMovie(movie);
+    setModalOpen(true);
+  };
+
   return (
     <div className="film-container">
       {movies.map((movie, index) => (
-        <FilmCard key={index} film={movie} />
+        <FilmCard key={index} film={movie} onClick={() => cardClick(movie)} />
       ))}
+
+      {modalOpen && (
+        <Modal film={selectedMovie} onClose={() => setModalOpen(false)} />
+      )}
     </div>
   );
 };
