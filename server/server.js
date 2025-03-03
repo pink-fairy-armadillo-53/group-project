@@ -14,6 +14,7 @@ app.use(cors({
     methods: 'GET,POST,PUT,DELETE',
     credentials: true, // Allow cookies (if needed)
   }));
+
   
 // movie controller for top rated movies
 app.get('/api/movies/top-rated', movieController.getTopRatedMovies, (req, res) => {
@@ -23,6 +24,9 @@ app.get('/api/movies/top-rated', movieController.getTopRatedMovies, (req, res) =
 // Basic route
 app.get('/', (req, res) => { res.send('Hello from the backend!'); });
 
+// Using routes
+app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes);
 
 
 
