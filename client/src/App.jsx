@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import Navbar from './components/Navbar'
-import fetchMovie from '../src/services/fetchMovie'
 import HomePage from './pages/HomePage';
 import FilmPage from './pages/FilmPage';
 import FavoritesPage from './pages/FavoritesPage';
 import MyReviewsPage from './pages/MyReviewsPage';
 import Login from './Login';
-import Hero from './components/Hero'
+
 
  function App() {
 
@@ -22,15 +21,6 @@ import Hero from './components/Hero'
     });
    }, []);
  
-
-  //pulls fetches the movies and displays in browser
-  const [movies, setMovies] = useState([])
-useEffect(()=>{
-  fetchMovie().then(data=>{
-    setMovies(data)
-  })
-  // console.log(movies)
-},[movies])
 
   const userId = 'exampleUserId'; // Replace with actual user ID logic
 
@@ -55,13 +45,7 @@ useEffect(()=>{
     </Router>
 {/* End Navbar Component */}
 
-    <div>
-      <ul>{movies.map((movie, index) => (
-            <li key={index}>{movie.title}
-            </li> 
-          ))}</ul>
-      
-      </div>
+
       </>
   )
 }

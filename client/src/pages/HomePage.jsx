@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import FilmContainer from '../containers/FilmContainer';
 
+
 const HomePage = () => {
   const [topRatedFilms, setTopRatedFilms] = useState([]);
   const [allFilms, setAllFilms] = useState([]);
@@ -32,8 +33,6 @@ const HomePage = () => {
       <Hero films={topRatedFilms} />
       <h2>Top Rated Films</h2>
       <FilmContainer films={topRatedFilms} />
-      <h2>All Films</h2>
-      <FilmContainer films={allFilms} />
     </div>
   );
 };
