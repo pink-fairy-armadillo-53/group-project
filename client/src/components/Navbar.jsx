@@ -1,12 +1,14 @@
 // Child component that displays nav bar (for generic home page and logged in users) and search bar
 
-import React from 'react';
+import React , { useRef }from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 //This is just a temporary navbar for testing routes. Feel free to edit or replace with your navbar later. -Arthur
+
+
 const Navbar = () => {
   return (
-    <nav className='navbar'>
+    <nav className='navbar' >
         <div className="logo"><a href="#">Rotten</a></div>
 
       <ul className='navbar-left'>
