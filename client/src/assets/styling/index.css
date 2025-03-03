@@ -204,9 +204,11 @@ video{
   background-image: linear-gradient(#3deceb, #176ab9,#40f7ec);
     color: transparent;
     background-clip: text;
-    font-size: 6.2rem;
+    font-size: 8.2rem;
+    font-family: "Caesar Dressing";
 }
 .video_overlay p{
+  text-align: center;
   font-size: 1.2rem;
 }
 
