@@ -1,0 +1,132 @@
+/*/ ******************BASE STYLING RESET*************** */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/* 2. Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/*/ ******************Default Styling*************** */
+
+:root{
+  --primary-color: #000000;
+  --secondary-color:#e50914;
+  --text-color-active: #ffffff;
+  --text-color-inactive: #8d9293;
+  --hover-state: rgb(124, 124, 124);
+  --navbar-color: #101010;
+}
+body{
+background-color: var(--primary-color);
+color: var(--text-color-active);
+font-family: 'Source Sans Pro';
+}
+
+li{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+  color: var(--text-color-active);
+}
+/********** Navbar styling****************/
+nav{
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding:0 2rem;
+  align-items: center;
+  height: 80px;
+  position: fixed;
+  z-index: 9999;
+}
+.navbar-left, .navbar-right{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 28%;
+}
+.nav-links{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-links li{
+  margin: 0 .8rem;
+}
+li a{
+  transition: ease-in .2s;
+}
+li a:hover{
+  color: var(--hover-state)
+}
+
+
+/********** Hero styling****************/
+
+.video_container{
+  position: relative;
+}
+video{
+  width: 100%;
+  overflow: hidden
+}
+.video_overlay{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to left, rgb(0,0,0,.2), rgb(0,0,0,.9));
+  z-index: 16;
+  height: 100%;
+  width: 100%;
+  padding-left: 3rem;
+  line-height: 1.2;
+}
+.video_overlay h2{
+  background-image: linear-gradient(#3deceb, #176ab9,#40f7ec);
+    color: transparent;
+    background-clip: text;
+    font-size: 4.2rem;
+}
+.video_overlay p{
+  font-size: 1.2rem;
+}

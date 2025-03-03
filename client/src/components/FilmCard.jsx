@@ -1,11 +1,14 @@
-// Child component that displays an image of the film poster, title, and aggregated reviews on shelves, favorites page, or filtered search results
+import React from 'react';
 
-const FilmCard = () => {
-    return (
-      <>
-        <h1>FilmCard</h1>
-      </>
-    );
-  };
-  
-  export default FilmCard;
+const FilmCard = ({ film }) => {
+  return (
+    //Things after || are placeholder for future data input
+    <div className='film-card'>
+      <img src={film.image || 'placeholder.jpg'} alt={film.name || 'Film Poster'} />
+      <h1>{film.name || 'Film Name'}</h1>
+      <button>Like</button>
+    </div>
+  );
+};
+
+export default FilmCard;
