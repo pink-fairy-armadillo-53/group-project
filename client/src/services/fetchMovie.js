@@ -1,4 +1,4 @@
-export const fetchTopRatedMovies = async ()=>{
+const fetchTopRatedMovies = async ()=>{
     try{
         const response = await fetch("http://localhost:3000/api/movies/top-rated")
     const data = await response.json()
@@ -7,4 +7,5 @@ export const fetchTopRatedMovies = async ()=>{
         console.log("error from the client: services/fetchMovie")
     }
 }
-fetchTopRatedMovies()
+
+export default fetchTopRatedMovies
