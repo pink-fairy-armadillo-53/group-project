@@ -45,11 +45,12 @@ h1, h2, h3, h4, h5, h6 {
 /*/ ******************Default Styling*************** */
 
 :root{
-  --primary-color: #101010;
+  --primary-color: #000000;
   --secondary-color:#e50914;
   --text-color-active: #ffffff;
   --text-color-inactive: #8d9293;
   --hover-state: rgb(124, 124, 124);
+  --navbar-color: #101010;
 }
 body{
 background-color: var(--primary-color);
@@ -64,7 +65,7 @@ a{
   text-decoration: none;
   color: var(--text-color-active);
 }
-/* Navbar styling */
+/********** Navbar styling****************/
 nav{
   background-color: transparent;
   width: 100%;
@@ -73,6 +74,8 @@ nav{
   padding:0 2rem;
   align-items: center;
   height: 80px;
+  position: fixed;
+  z-index: 9999;
 }
 .navbar-left, .navbar-right{
   align-items: center;
@@ -95,3 +98,35 @@ li a:hover{
   color: var(--hover-state)
 }
 
+
+/********** Hero styling****************/
+
+.video_container{
+  position: relative;
+}
+video{
+  width: 100%;
+  overflow: hidden
+}
+.video_overlay{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to left, rgb(0,0,0,.2), rgb(0,0,0,.9));
+  z-index: 16;
+  height: 100%;
+  width: 100%;
+  padding-left: 3rem;
+  line-height: 1.2;
+}
+.video_overlay h2{
+  background-image: linear-gradient(#3deceb, #176ab9,#40f7ec);
+    color: transparent;
+    background-clip: text;
+    font-size: 4.2rem;
+}
+.video_overlay p{
+  font-size: 1.2rem;
+}

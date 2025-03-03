@@ -9,6 +9,7 @@ import FilmPage from './pages/FilmPage';
 import FavoritesPage from './pages/FavoritesPage';
 import MyReviewsPage from './pages/MyReviewsPage';
 import Login from './Login';
+import Hero from './components/Hero'
 
  function App() {
 
@@ -28,13 +29,14 @@ useEffect(()=>{
   fetchMovie().then(data=>{
     setMovies(data)
   })
-  console.log(movies)
+  // console.log(movies)
 },[movies])
 
   const userId = 'exampleUserId'; // Replace with actual user ID logic
 
   return (
     <>
+    {/* Navbar Component */}
     <Router>
         <Navbar />
         <Routes>
@@ -51,6 +53,7 @@ useEffect(()=>{
           <Route path='/' element={<HomePage />} />
         </Routes>
     </Router>
+{/* End Navbar Component */}
 
     <div>
       <ul>{movies.map((movie, index) => (
