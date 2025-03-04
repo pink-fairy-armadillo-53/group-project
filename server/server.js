@@ -9,6 +9,9 @@ const movieController = require('./controllers/movieController')
 //review controller
 const reviewController = require("./controllers/reviewController");
 
+//review controller
+const reviewController = require("./controllers/reviewController");
+
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -38,7 +41,9 @@ app.post("/api/reviews/add", reviewController.addMovieReview, (req, res) => {
 });
 
 app.get("/api/reviews/:movieId", reviewController.getMovieReview, (req, res) => {
-  res.status(200).send(res.locals.getMovieReview);
+
+  res.status(200).send(res.locals.getReviews);
+
 });
 
 // Basic route
