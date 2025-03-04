@@ -9,9 +9,7 @@ const ReviewContainer = ({ filmId }) => {
   const [reviewContent, setReviewContent] = useState('');
   const [reviewScore, setReviewScore] = useState(0);
   const [reviews, setReviews] = useState([]);
-
   useEffect(() => {
-
 const options = {
     method: 'GET',
     headers: {
@@ -20,35 +18,57 @@ const options = {
     }
   };
 
-  
-const fetchReviews = async ()=>{
+const fetchReviews = async (filmId)=>{
+  console.log('FILM ID', filmId)
     const BASE_URL = "https://api.themoviedb.org/3/movie/"
     const endpoint = "/reviews"
     try{
-       const response = await fetch(BASE_URL+343611+endpoint, options)
+       const response = await fetch(BASE_URL+filmId+endpoint, options)
        const data = await response.json();
-       console.log(data)
-        return data
-        // setReviews(data)
+        // return data
        ///console.logging this data with a string breaks it
        console.log("data from the movie Services")
-       console.log(data)
+       console.log(data.results)
+      const oneReview =data.results[0];
+       setReviews([oneReview]);
+       console.log('FILM ID AGAIN', filmId)
     }catch(error){
       console.log(error)
     }
   }
-
-
-    fetchReviews(); 
+    fetchReviews(filmId);
   }, [filmId]);
+
+// post review to database
+  const postReview = async () => {
+const reviewData = {
+  username: 'Arthur',user_id: '12345', publish_date: 'March 3' , movieId: filmId, content: reviewContent, stars: reviewScore,
+};
+console.log('✅FETCHING DATA');
+  try{
+    const response = await fetch('http://localhost:3000/api/reviews/add', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(reviewData),
+  });
+if (response.ok) {
+  const newReview = await response.json();
+  setReviews([...reviews, newReview]);
+  console.log('Review submitted: ', newReview);
+}
+} catch (error) {
+  console.error('Error submitting review: ', error);
+}
+  }
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-    console.log('Review submitted:', { filmId, reviewContent, reviewScore });
+    postReview(reviewContent);
     setReviewContent('');
     setReviewScore(0);
   };
-
   const handleStarClick = (score) => {
     setReviewScore(score);
   };
@@ -56,16 +76,16 @@ const fetchReviews = async ()=>{
   return (
     <div className='review-container'>
       <form onSubmit={handleReviewSubmit}>
-        <textarea 
-          placeholder='Write a review...' 
-          value={reviewContent} 
+        <textarea
+          placeholder='Write a review...'
+          value={reviewContent}
           onChange={(e) => setReviewContent(e.target.value)}
         />
         <div className='star-rating'>
           {[1, 2, 3, 4, 5].map((star) => (
-            <span 
-              key={star} 
-              className={star <= reviewScore ? 'star filled' : 'star'} 
+            <span
+              key={star}
+              className={star <= reviewScore ? 'star filled' : 'star'}
               onClick={() => handleStarClick(star)}
             >
               ★
@@ -77,7 +97,7 @@ const fetchReviews = async ()=>{
       <h1>Reviews</h1>
       <div className='review-list'>
         {reviews.map((review, index) => (
-          <ReviewCard 
+          <ReviewCard
             key={index}
             filmId={filmId}
             author={review.author}
@@ -89,5 +109,4 @@ const fetchReviews = async ()=>{
     </div>
   );
 };
-
 export default ReviewContainer;

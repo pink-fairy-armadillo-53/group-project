@@ -1,9 +1,10 @@
 import React from "react";
 import ReviewContainer from '../containers/ReviewContainer';
-
 const Modal = ({ film, onClose }) => {
   if (!film) return null; // Prevents rendering if no movie is selected
-    console.log(film)
+    console.log(film);
+    console.log('FILM ID FROM MODAL', film.id);
+    const filmId = film.id;
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -19,12 +20,11 @@ const Modal = ({ film, onClose }) => {
          <p><strong>Release Date:</strong> {film.release_date
          }</p>
          </div>
-         <ReviewContainer film={film.id} />
+         <ReviewContainer filmId={filmId} />
         </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Modal;
