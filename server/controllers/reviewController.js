@@ -54,7 +54,9 @@ reviewController.addMovieReview = async(req, res, next)=>{
 reviewController.getMovieReview = async(req, res, next) => {
   try {
     const { movieId } = req.params;
-    const reviews = await Review.find({ movieId });
+
+    const reviews = await Review.findOne({ movieId });
+
     res.locals.getReviews = reviews
     return next();
   } catch(error){

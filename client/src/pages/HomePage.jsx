@@ -31,7 +31,7 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <Hero films={topRatedFilms} />
-      <h2>Top Rated Films</h2>
+      <h2 className='videoSec-header'>Top Rated Films</h2>
       <FilmContainer films={topRatedFilms} />
     </div>
   );

@@ -45,6 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 /*/ ******************Default Styling*************** */
 
 :root{
+  font-size: 18px;
   --primary-color: #000000;
   --secondary-color:#e50914;
   --text-color-active: #ffffff;
@@ -185,7 +186,8 @@ flex-direction: column;
 }
 video{
   width: 100%;
-  overflow: hidden
+  overflow: hidden;
+  aspect-ratio: 16/9;
 }
 .video_overlay{
   display: flex;
@@ -194,7 +196,7 @@ video{
   top: 0;
   bottom: 0;
   background: linear-gradient(to left, rgb(0,0,0,.2), rgb(0,0,0,.9));
-  z-index: 16;
+  z-index: 6;
   height: 100%;
   width: 100%;
   padding:var(--container-padding);
@@ -204,12 +206,18 @@ video{
   background-image: linear-gradient(#3deceb, #176ab9,#40f7ec);
     color: transparent;
     background-clip: text;
-    font-size: 6.2rem;
+    font-size: 8.2rem;
+    font-family: "Caesar Dressing";
 }
 .video_overlay p{
+  text-align: center;
   font-size: 1.2rem;
 }
 
+.videoSec-header{
+  padding: var(--container-padding);
+  font-size: 2rem;
+}
 
 /********** Cards Container styling****************/
 
@@ -220,7 +228,8 @@ video{
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 1rem;
 	place-items: center;
-  padding: var(--container-padding)
+  padding: var(--container-padding);
+  position: relative;
 }
 
 .film-card{
@@ -244,5 +253,72 @@ transform: scale(1.1);
   border-radius: 15px;
 }
 .card-content h3{
+  font-size: 1.2rem;
+}
+/********** Modal styling****************/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(53, 53, 53, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+.modal-container{
+  display:flex;
+}
+.modal {
+  background: var(--primary-color);
+  border-radius: 8px;
+  max-width: 1200px;
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+  border-radius: 8px;
+  top: 46px;
+}
+.modal-content{
+  width: 60%;
+  padding: 2rem 0rem;
+}
+.modal-image img {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: auto 1 / 1; 
+}
+.modal-header{
+  font-size: 2.8rem;
+}
+.modal-description{
+  line-height: 1.4;
   font-size: 1.4rem;
+  padding:0 2rem;
+  text-align: left;
+  width: 100%;
+}
+.modal-description p{
+  padding: 1rem 0;
+}
+.close-button {
+  color: var(--text-color-active);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+/********** Responsive MediaQueries****************/
+@media screen and (max-width: 968px) {
+  .video_overlay h2{
+    font-size: 4rem;
+  }
 }

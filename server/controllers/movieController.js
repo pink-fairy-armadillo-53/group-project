@@ -15,7 +15,8 @@ async getTopRatedMovies (req, res, next){
             message:{err:"error getting top rated movies"}
           })
     }
-}
+},
+
 }
 
 module.exports = MovieController;

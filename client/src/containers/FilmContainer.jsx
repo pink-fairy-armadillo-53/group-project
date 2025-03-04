@@ -1,37 +1,34 @@
-// not sure about this -R
-// passing down props of films to each film card and display them
+import React, { useState, useEffect } from "react";
+import FilmCard from "../components/FilmCard";
+import Modal from "../components/Modal";
+import fetchMovies from "../services/fetchMovie";
 
-import React, { useState, useEffect } from 'react';
-import FilmCard from '../components/FilmCard';
-import fetchMovie from '../services/fetchMovie'
 const FilmContainer = () => {
-  const [films, setFilms] = useState([]);
-    //pulls fetches the movies and displays in browser
-    const [movies, setMovies] = useState([])
-    useEffect(()=>{
-      fetchMovie().then(data=>{
-        setMovies(data)
-      })
-      // console.log(movies)
-    },[movies])
-    
-  useEffect(() => {
-    // Placeholder for fetching films from an API
-    const fetchFilms = async () => {
-      // Example: const response = await fetch('/api/films');
-      // const data = await response.json();
-      const data = []; // Placeholder data
-      setFilms(data);
-    };
+  const [movies, setMovies] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
-    fetchFilms();
+  useEffect(() => {
+    fetchMovies().then((data) => {
+      setMovies(data);
+    });
   }, []);
 
+  const cardClick = (movie) => {
+    console.log("Film clicked:", movie); 
+    setSelectedMovie(movie);
+    setModalOpen(true);
+  };
+
   return (
-    <div className='film-container'>
+    <div className="film-container">
       {movies.map((movie, index) => (
-        <FilmCard key={index} film={movie} />
+        <FilmCard key={index} film={movie} onClick={() => cardClick(movie)} />
       ))}
+
+      {modalOpen && (
+        <Modal film={selectedMovie} onClose={() => setModalOpen(false)} />
+      )}
     </div>
   );
 };

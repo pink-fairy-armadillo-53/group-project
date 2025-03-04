@@ -27,7 +27,9 @@ const reviewMovieSchema = new mongoose.Schema({
   username: String,
   user_id: String,
   movie_id: String,
-  publish_date: Date,
+
+  publish_date: String,
+
   content: String,
   stars: Number
 });
